@@ -1,0 +1,108 @@
+const HtmlWebPackPlugin = require("html-webpack-plugin");
+const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPlugin");
+const { VueLoaderPlugin } = require("vue-loader");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const path = require("path");
+
+const { DefinePlugin } = require('webpack')
+
+module.exports = (_, argv) => ({
+  output: {
+    publicPath: "http://localhost:3005/",
+  },
+
+  resolve: {
+    extensions: [".tsx", ".ts", ".vue", ".jsx", ".js", ".json"],
+  },
+
+  module: {
+    rules: [
+      {
+        test: /\.vue$/,
+        loader: "vue-loader",
+      },
+      {
+        test: /\.tsx?$/,
+        use: [
+          "babel-loader",
+          {
+            loader: "ts-loader",
+            options: {
+              transpileOnly: true,
+              appendTsSuffixTo: ["\\.vue$"],
+              happyPackMode: true,
+            },
+          },
+        ],
+      },
+      {
+        test: /\.css$/,
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {},
+          },
+          'css-loader',
+        ],
+      },
+      {
+        test: /\.sass$/,
+        use: [
+          'vue-style-loader',
+          'css-loader',
+          'sass-loader'
+        ]
+      },
+      {
+        test: /\.s[ac]ss$/i,
+        use: [
+          'vue-style-loader',
+          'css-loader',
+          'sass-loader'
+        ]
+      },
+      {
+        test: /\.svg$/,
+        use: 'svg-loader',
+      }
+    ],
+  },
+
+  plugins: [
+    new DefinePlugin({
+      __VUE_OPTIONS_API__: true,
+      __VUE_PROD_DEVTOOLS__: false,
+    }),
+    new MiniCssExtractPlugin({
+      filename: '[name].css',
+    }),
+    new VueLoaderPlugin(),
+    new ModuleFederationPlugin({
+      name: "vue_real_navi_bar",
+      filename: "remoteEntry.js",
+      remotes: {},
+      exposes: {},
+      shared: require("./package.json").dependencies,
+    }),
+    new HtmlWebPackPlugin({
+      template: path.resolve(__dirname, './public/index.html'),
+      chunks: ['main'],
+    }),
+  ],
+
+  devServer: {
+    static: {
+      directory: path.join(__dirname),
+    },
+    compress: true,
+    port: 3005,
+    hot: true,
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
+      'Access-Control-Allow-Headers':
+          'X-Requested-With, content-type, Authorization',
+    },
+  },
+});
