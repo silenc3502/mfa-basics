@@ -6,7 +6,8 @@
       "react-module-app",
       "vue-module-app",
       "host-container-app",
-      "vue-navigation-bar"
+      "vue-navigation-bar",
+	  "vue-real-navi-bar"
     ]
   },
   "scripts": {

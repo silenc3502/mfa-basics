@@ -8,8 +8,16 @@ const path = require("path");
 const { DefinePlugin } = require('webpack')
 
 module.exports = (_, argv) => ({
+  mode: 'development',
+  cache: false,
+  devtool: 'source-map',
+  optimization: {
+    minimize: false,
+  },
+  target: 'web',
+  entry: path.resolve(__dirname, './src/index'),
   output: {
-    publicPath: "http://localhost:3005/",
+    publicPath: 'auto',
   },
 
   resolve: {
@@ -79,10 +87,13 @@ module.exports = (_, argv) => ({
     }),
     new VueLoaderPlugin(),
     new ModuleFederationPlugin({
-      name: "vue_real_navi_bar",
+      //name: "vue_real_navi_bar",
+      name: "vueRealNaviBar",
       filename: "remoteEntry.js",
       remotes: {},
-      exposes: {},
+      exposes: {
+        './RealNavigation': './src/bootstrap',
+      },
       shared: require("./package.json").dependencies,
     }),
     new HtmlWebPackPlugin({

@@ -10,13 +10,24 @@ import * as components from 'vuetify/components';
 import * as directives from 'vuetify/directives';
 import { createVuetify } from "vuetify";
 
-loadFonts()
+const realNaviBarMount = (el: string | Element) => {
 
-const vuetify = createVuetify({
-    components,
-    directives,
-});
+    loadFonts()
 
-createApp(App)
-    .use(vuetify)
-    .mount('#app')
+    const vuetify = createVuetify({
+        components,
+        directives,
+    });
+
+    createApp(App)
+        .use(vuetify)
+        .mount(el)
+}
+
+const devRoot = document.querySelector('#real-navi-bar');
+
+if (devRoot) {
+    realNaviBarMount(devRoot);
+}
+
+export { realNaviBarMount };
