@@ -1,10 +1,13 @@
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPlugin");
+const ExternalTemplateRemotesPlugin = require('external-remotes-plugin');
 
 const deps = require("./package.json").dependencies;
 module.exports = (_, argv) => ({
+  entry: "./src/index.js",
+
   output: {
-    publicPath: "http://localhost:3006/",
+    publicPath: 'auto',
   },
 
   resolve: {
@@ -14,6 +17,13 @@ module.exports = (_, argv) => ({
   devServer: {
     port: 3006,
     historyApiFallback: true,
+    hot: true,
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
+      'Access-Control-Allow-Headers':
+          'X-Requested-With, content-type, Authorization',
+    },
   },
 
   module: {
@@ -41,10 +51,13 @@ module.exports = (_, argv) => ({
 
   plugins: [
     new ModuleFederationPlugin({
-      name: "react_zustand_state",
+      //name: "react_zustand_state",
+      name: "reactZustandStateModule",
       filename: "remoteEntry.js",
-      remotes: {},
-      exposes: {},
+      exposes: {
+        './ReactZustandState': './src/bootstrap.js',
+        "./TodoApp": "./src/components/TodoApp.jsx"
+      },
       shared: {
         ...deps,
         react: {
@@ -58,7 +71,9 @@ module.exports = (_, argv) => ({
       },
     }),
     new HtmlWebPackPlugin({
-      template: "./src/index.html",
+      template: "./public/index.html",
+      chunks: ['main'],
     }),
+    new ExternalTemplateRemotesPlugin(),
   ],
 });

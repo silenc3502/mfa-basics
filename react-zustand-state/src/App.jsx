@@ -1,5 +1,4 @@
 import React from "react";
-import ReactDOM from "react-dom";
 
 import "./index.css";
 import TodoApp from "./components/TodoApp";
@@ -13,4 +12,5 @@ const App = () => (
     <TodoApp />
   </div>
 );
-ReactDOM.render(<App />, document.getElementById("app"));
+
+export { App }

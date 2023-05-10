@@ -7,7 +7,8 @@
       "vue-module-app",
       "host-container-app",
       "vue-navigation-bar",
-	  "vue-real-navi-bar"
+	  "vue-real-navi-bar",
+	  "react-zustand-state"
     ]
   },
   "scripts": {
