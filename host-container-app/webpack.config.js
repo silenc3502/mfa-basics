@@ -49,6 +49,7 @@ module.exports = (_, argv) => ({
         vueNavigationPageModule: 'vueNavigationPageModule@http://localhost:3004/remoteEntry.js',
         vueRealNaviBarModule: 'vueRealNaviBar@http://localhost:3005/remoteEntry.js',
         reactZustandStateModule: 'reactZustandStateModule@http://localhost:3006/remoteEntry.js',
+        reactZustateAppModule:  'reactZustateApp@http://localhost:3007/remoteEntry.js',
       },
       shared: {
         ...deps,

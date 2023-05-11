@@ -9,8 +9,8 @@ const App = () => (
     <div>Framework: react</div>
     <div>Language: JavaScript</div>
     <div>CSS: Empty CSS</div>
-    <TodoApp />
+    <TodoApp/>
   </div>
 );
 
-export { App }
+export default App;

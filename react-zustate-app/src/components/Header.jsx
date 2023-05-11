@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from '../styles/Header.module.css';
 const Header = () => {
-    const headerStyle = {
+    const headerStyle= {
         padding: '20px 0',
         lineHeight: '1.5em',
         color: '#aeadad',

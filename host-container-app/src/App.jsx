@@ -5,7 +5,8 @@ import { mount } from 'vueModuleApp/Sample';
 import { Counter } from 'reactModuleApp/Counter';
 import { navigationBarMount } from 'vueNavigationPageModule/NavigationBarPage'
 import { realNaviBarMount } from 'vueRealNaviBarModule/RealNavigation'
-import { TodoApp } from 'reactZustandStateModule/TodoApp'
+//import { TodoApp } from 'reactZustandStateModule/TodoApp'
+import { ZustateCounter } from 'reactZustateAppModule/ZustateCounter'
 
 import "./index.css";
 
@@ -33,7 +34,7 @@ const App = () => {
       <Counter/>
       <h2>Vue Navigation Bar</h2>
       <div ref={vueNavigationRef} />
-      <TodoApp/>
+      <ZustateCounter/>
     </div>
   );
 }
