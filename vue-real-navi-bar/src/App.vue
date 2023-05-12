@@ -1,9 +1,9 @@
 <template>
-  <v-app>
-    <v-main>
+  <div style="height: 64px;">
+    <v-app>
       <NavigationBarPage/>
-    </v-main>
-  </v-app>
+    </v-app>
+  </div>
 </template>
 
 <script lang="ts">
