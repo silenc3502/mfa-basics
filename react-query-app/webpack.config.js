@@ -1,19 +1,28 @@
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPlugin");
+const ExternalTemplateRemotesPlugin = require("external-remotes-plugin");
 
 const deps = require("./package.json").dependencies;
 module.exports = (_, argv) => ({
-  output: {
-    publicPath: "http://localhost:3001/",
-  },
+  mode: "development",
+  entry: "./src/index",
 
+  output: {
+    publicPath: 'auto',
+  },
   resolve: {
     extensions: [".tsx", ".ts", ".jsx", ".js", ".json"],
   },
-
   devServer: {
-    port: 3001,
+    port: 3008,
     historyApiFallback: true,
+    hot: true,
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
+      'Access-Control-Allow-Headers':
+          'X-Requested-With, content-type, Authorization',
+    },
   },
 
   module: {
@@ -41,16 +50,12 @@ module.exports = (_, argv) => ({
 
   plugins: [
     new ModuleFederationPlugin({
-      name: "host_container_app",
+      name: "reactQueryApp",
       filename: "remoteEntry.js",
-      remotes: {
-        vueModuleApp: 'vueModuleApp@http://localhost:3002/remoteEntry.js',
-        reactModuleApp: 'reactModuleApp@http://localhost:3003/remoteEntry.js',
-        vueNavigationPageModule: 'vueNavigationPageModule@http://localhost:3004/remoteEntry.js',
-        vueRealNaviBarModule: 'vueRealNaviBar@http://localhost:3005/remoteEntry.js',
-        reactZustandStateModule: 'reactZustandStateModule@http://localhost:3006/remoteEntry.js',
-        reactZustateAppModule:  'reactZustateApp@http://localhost:3007/remoteEntry.js',
-        reactQueryAppModule: 'reactQueryApp@http://localhost:3008/remoteEntry.js',
+      remotes: {},
+      exposes: {
+        './MainApp': './src/bootstrap.js',
+        "./ReactQueryStarter": "./src/components/ReactQueryStarter.js"
       },
       shared: {
         ...deps,
@@ -65,7 +70,9 @@ module.exports = (_, argv) => ({
       },
     }),
     new HtmlWebPackPlugin({
-      template: "./src/index.html",
+      template: './public/index.html',
+      chunks: ['main'],
     }),
+    new ExternalTemplateRemotesPlugin(),
   ],
 });

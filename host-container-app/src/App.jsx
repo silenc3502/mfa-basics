@@ -7,6 +7,7 @@ import { navigationBarMount } from 'vueNavigationPageModule/NavigationBarPage'
 import { realNaviBarMount } from 'vueRealNaviBarModule/RealNavigation'
 //import { TodoApp } from 'reactZustandStateModule/TodoApp'
 import { ZustateCounter } from 'reactZustateAppModule/ZustateCounter'
+import { ReactQueryStarter } from 'reactQueryAppModule/ReactQueryStarter'
 
 import "./index.css";
 
@@ -35,6 +36,7 @@ const App = () => {
       <h2>Vue Navigation Bar</h2>
       <div ref={vueNavigationRef} />
       <ZustateCounter/>
+      <ReactQueryStarter/>
     </div>
   );
 }

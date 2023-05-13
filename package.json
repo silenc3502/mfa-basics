@@ -9,7 +9,8 @@
       "vue-navigation-bar",
 	  "vue-real-navi-bar",
 	  "react-zustand-state",
-	  "react-zustate-app"
+	  "react-zustate-app",
+	  "react-query-app"
     ]
   },
   "scripts": {
