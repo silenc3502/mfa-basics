@@ -4,7 +4,7 @@ const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPl
 const deps = require("./package.json").dependencies;
 module.exports = (_, argv) => ({
   output: {
-    publicPath: "http://localhost:3001/",
+    publicPath: "http://localhost:3009/",
   },
 
   resolve: {
@@ -12,7 +12,7 @@ module.exports = (_, argv) => ({
   },
 
   devServer: {
-    port: 3001,
+    port: 3009,
     historyApiFallback: true,
   },
 
@@ -41,18 +41,10 @@ module.exports = (_, argv) => ({
 
   plugins: [
     new ModuleFederationPlugin({
-      name: "host_container_app",
+      name: "react_typescript_board",
       filename: "remoteEntry.js",
-      remotes: {
-        vueModuleApp: 'vueModuleApp@http://localhost:3002/remoteEntry.js',
-        reactModuleApp: 'reactModuleApp@http://localhost:3003/remoteEntry.js',
-        vueNavigationPageModule: 'vueNavigationPageModule@http://localhost:3004/remoteEntry.js',
-        vueRealNaviBarModule: 'vueRealNaviBar@http://localhost:3005/remoteEntry.js',
-        reactZustandStateModule: 'reactZustandStateModule@http://localhost:3006/remoteEntry.js',
-        reactZustateAppModule:  'reactZustateApp@http://localhost:3007/remoteEntry.js',
-        reactQueryAppModule: 'reactQueryApp@http://localhost:3008/remoteEntry.js',
-        reactTypescriptBoard: 'reactTypescriptBoard@http://localhost:3009/remoteEntry.js',
-      },
+      remotes: {},
+      exposes: {},
       shared: {
         ...deps,
         react: {
@@ -63,18 +55,10 @@ module.exports = (_, argv) => ({
           singleton: true,
           requiredVersion: deps["react-dom"],
         },
-        "react-router-dom": {
-          singleton: true,
-          requiredVersion: deps["react-router-dom"]
-        },
-        'react-query': {
-          singleton: true,
-          requiredVersion: deps["react-query"]
-        },
       },
     }),
     new HtmlWebPackPlugin({
-      template: "./src/index.html",
+      template: "./public/index.html",
     }),
   ],
 });

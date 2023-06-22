@@ -1,5 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import ReactDOM from "react-dom";
+import { BrowserRouter } from 'react-router-dom'
+import { QueryClient, QueryClientProvider } from "react-query";
 
 import { mount } from 'vueModuleApp/Sample';
 import { Counter } from 'reactModuleApp/Counter';
@@ -8,8 +10,19 @@ import { realNaviBarMount } from 'vueRealNaviBarModule/RealNavigation'
 //import { TodoApp } from 'reactZustandStateModule/TodoApp'
 import { ZustateCounter } from 'reactZustateAppModule/ZustateCounter'
 import { ReactQueryStarter } from 'reactQueryAppModule/ReactQueryStarter'
+import ReactTypeScriptBoardApp from 'reactTypescriptBoard/ReactTypeScriptBoardApp'
 
 import "./index.css";
+
+const queryClient = new QueryClient({
+    defaultOptions: {
+        queries: {
+            refetchOnWindowFocus: false,
+            retry: false,
+            staleTime: 30000,
+        }
+    }
+})
 
 const App = () => {
   const vueRef = useRef(null)
@@ -23,8 +36,7 @@ const App = () => {
   }, []);
 
   return (
-    <div>
-      <div ref={vuetifyRealNaviRef} />
+    <div style={{ position: 'relative' }}>
       <div>Name: host-container-app</div>
       <div>Framework: react</div>
       <div>Language: JavaScript</div>
@@ -37,6 +49,14 @@ const App = () => {
       <div ref={vueNavigationRef} />
       <ZustateCounter/>
       <ReactQueryStarter/>
+      <div ref={vuetifyRealNaviRef} />
+      <div style={{ position: 'relative' }}>
+        <QueryClientProvider client={queryClient}>
+          <BrowserRouter>
+            <ReactTypeScriptBoardApp/>
+          </BrowserRouter>
+        </QueryClientProvider>
+      </div>
     </div>
   );
 }

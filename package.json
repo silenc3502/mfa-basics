@@ -10,7 +10,8 @@
 	  "vue-real-navi-bar",
 	  "react-zustand-state",
 	  "react-zustate-app",
-	  "react-query-app"
+	  "react-query-app",
+      "react-typescript-board"
     ]
   },
   "scripts": {
