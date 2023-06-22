@@ -11,7 +11,8 @@
 	  "react-zustand-state",
 	  "react-zustate-app",
 	  "react-query-app",
-      "react-typescript-board"
+      "react-typescript-board",
+      "vuetify-tailwindcss-board"
     ]
   },
   "scripts": {

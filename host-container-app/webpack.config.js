@@ -27,7 +27,11 @@ module.exports = (_, argv) => ({
       },
       {
         test: /\.(css|s[ac]ss)$/i,
-        use: ["style-loader", "css-loader", "postcss-loader"],
+        use: [
+          { loader: "style-loader" },
+          { loader: "css-loader", options: { modules: true } },
+          { loader: "postcss-loader" },
+        ],
       },
       {
         test: /\.(ts|tsx|js|jsx)$/,
@@ -52,6 +56,7 @@ module.exports = (_, argv) => ({
         reactZustateAppModule:  'reactZustateApp@http://localhost:3007/remoteEntry.js',
         reactQueryAppModule: 'reactQueryApp@http://localhost:3008/remoteEntry.js',
         reactTypescriptBoard: 'reactTypescriptBoard@http://localhost:3009/remoteEntry.js',
+        vuetifyTailwindBoardApp: 'vuetifyTailwindBoardApp@http://localhost:3010/remoteEntry.js'
       },
       shared: {
         ...deps,
