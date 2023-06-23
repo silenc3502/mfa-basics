@@ -6,13 +6,12 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import { mount } from 'vueModuleApp/Sample';
 import { Counter } from 'reactModuleApp/Counter';
 import { navigationBarMount } from 'vueNavigationPageModule/NavigationBarPage'
-//import { realNaviBarMount } from 'vueRealNaviBarModule/RealNavigation'
-//import { TodoApp } from 'reactZustandStateModule/TodoApp'
+import { realNaviBarMount } from 'vueRealNaviBarModule/RealNavigation'
+import { TodoApp } from 'reactZustandStateModule/TodoApp'
 import { ZustateCounter } from 'reactZustateAppModule/ZustateCounter'
 import { ReactQueryStarter } from 'reactQueryAppModule/ReactQueryStarter'
 import ReactTypeScriptBoardApp from 'reactTypescriptBoard/ReactTypeScriptBoardApp'
-//import { vuetifyTailwindBoardMount } from 'vuetifyTailwindBoardApp/vuetifyBootstrap'
-//const MyComponent = lazy(() => import('./MyComponent'));
+import { vuetifyTailwindBoardMount } from 'vuetifyTailwindBoardApp/vuetifyBootstrap'
 
 import "./index.css";
 
@@ -35,24 +34,8 @@ const App = () => {
   useEffect(() => {
     mount(vueRef.current);
     navigationBarMount(vueNavigationRef.current)
-    //realNaviBarMount(vuetifyRealNaviRef.current)
-    import('vueRealNaviBarModule/RealNavigation')
-      .then((module) => {
-        const realNaviBarMount = module.default;
-        realNaviBarMount(vuetifyRealNaviRef.current);
-      })
-      .catch((error) => {
-        console.error('Error while loading remote module:', error);
-      });
-    //vuetifyTailwindBoardMount(vuetifyTailwindBoardRef.current)
-    import('vuetifyTailwindBoardApp/vuetifyBootstrap')
-      .then((module) => {
-        const vuetifyTailwindBoardMount = module.default;
-        vuetifyTailwindBoardMount(vuetifyTailwindBoardRef.current);
-      })
-      .catch((error) => {
-        console.error('Error while loading remote module:', error);
-      });
+    realNaviBarMount(vuetifyRealNaviRef.current)
+    vuetifyTailwindBoardMount(vuetifyTailwindBoardRef.current)
   }, []);
 
   return (
