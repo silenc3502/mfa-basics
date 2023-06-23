@@ -28,6 +28,7 @@
     <v-row>
       <v-col cols="12">
         <v-btn color="primary" @click="onSubmit">Save</v-btn>
+        <v-btn color="error" @click="onCancel">Cancel</v-btn>
       </v-col>
     </v-row>
   </v-container>
@@ -64,6 +65,9 @@ export default {
         name: 'VuetifyBoardRead',
         params: { boardId: board.boardId.toString() }
       });
+    },
+    onCancel() {
+      this.$router.go(-1); // 이전 페이지로 돌아가기
     }
   }
 }
