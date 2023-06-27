@@ -10,7 +10,7 @@ const BoardRegisterPage: React.FC = () => {
     const mutation = useMutation(registerBoard, {
         onSuccess: (data) => {
             queryClient.setQueryData('board', data); // 데이터 갱신
-            navigate(`/read/${data.boardId}`); // BoardReadPage로 이동
+            navigate(`/react-mui-board-app/read/${data.boardId}`); // BoardReadPage로 이동
         },
     });
 

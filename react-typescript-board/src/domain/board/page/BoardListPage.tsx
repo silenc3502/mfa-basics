@@ -55,7 +55,7 @@ const BoardListPage = () => {
   }
 
   const handleRowClick = (boardId: number) => {
-    navigate(`/read/${boardId}`);
+    navigate(`/react-mui-board-app/read/${boardId}`);
   };
 
   // 만약 Response에 맞춰서 interface를 구성한다면 아래와 같은 구성도 가능
@@ -67,7 +67,8 @@ const BoardListPage = () => {
 
   return (
     <Container maxWidth="lg">
-      <Button component={Link} to="/register" variant="contained"
+      <h2>안녕 React + TypeScript + Zustand + React-Query Board App이야</h2>
+      <Button component={Link} to="/react-mui-board-app/register" variant="contained"
               color="primary" style={{ marginTop: '20px' }}>
         글쓰기
       </Button>

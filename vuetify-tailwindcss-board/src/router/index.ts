@@ -8,22 +8,26 @@ import VuetifyBoardModify from "../page/VuetifyBoardModify.vue";
 const routes: Array<RouteRecordRaw> = [
     {
         path: '/',
+        redirect: '/vuetify-board-app',
+    },
+    {
+        path: '/vuetify-board-app',
         name: 'VuetifyBoardList',
         component: VuetifyBoardList
     },
     {
-        path: '/vuetify-board-register',
+        path: '/vuetify-board-app/register',
         name: 'VuetifyBoardRegister',
         component: VuetifyBoardRegister,
     },
     {
-        path: '/vuetify-board-read/:boardId',
+        path: '/vuetify-board-app/read/:boardId',
         name: 'VuetifyBoardRead',
         components: { default: VuetifyBoardRead },
         props: { default: true },
     },
     {
-        path: '/vuetify-board-modify/:boardId',
+        path: '/vuetify-board-app/modify/:boardId',
         name: 'VuetifyBoardModify',
         components: { default: VuetifyBoardModify },
         props: { default: true },

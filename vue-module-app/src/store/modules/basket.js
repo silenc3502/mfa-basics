@@ -8,7 +8,7 @@ export default {
     actions: {
         requestCreateBoardToSpring({}, payload) {
 
-            return axiosInst.post('/board/register',
+            return axiosInst.post('/jpa-board/register',
                 { title: "gogosing", content: "letsgo", writer: "attack" })
                 .then((res) => {
                     alert('게시물 등록 성공: ' + JSON.stringify(res.data))

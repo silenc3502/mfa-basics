@@ -1,5 +1,5 @@
-import React, {lazy, Suspense} from 'react';
-import {Route, Routes} from "react-router-dom";
+import React, { Suspense } from 'react';
+import { Route, Routes, Navigate } from "react-router-dom";
 
 import LazyLoad from './LazyLoad';
 import BoardListPage from '../domain/board/page/BoardListPage';
@@ -12,14 +12,15 @@ const MainRouters = () => {
         <>
             <Suspense fallback={<LazyLoad/>}>
                 <Routes>
+                    <Route path="/" element={<Navigate to="/react-mui-board-app" replace />} />
                     {/* 게시판 리스트 */}
-                    <Route path="/" element={<BoardListPage />} />
+                    <Route path="/react-mui-board-app" element={<BoardListPage />} />
                     {/* 게시판 등록 페이지 */}
-                    <Route path="/register" element={<BoardRegisterPage />} />
+                    <Route path="/react-mui-board-app/register" element={<BoardRegisterPage />} />
                     {/* 게시판 상세 페이지 */}
-                    <Route path="/read/:boardId" element={<BoardReadPage />} />
+                    <Route path="/react-mui-board-app/read/:boardId" element={<BoardReadPage />} />
                     {/* 게시판 수정 페이지 */}
-                    <Route path="/modify/:boardId" element={<BoardModifyPage />} />
+                    <Route path="/react-mui-board-app/modify/:boardId" element={<BoardModifyPage />} />
                 </Routes>
             </Suspense>
         </>

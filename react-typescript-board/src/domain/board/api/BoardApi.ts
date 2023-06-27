@@ -68,4 +68,8 @@ export const updateBoard = async (
   return response.data;
 };
 
+export const deleteBoard = async (boardId: string): Promise<void> => {
+  await springAxiosInst.delete(`/jpa-board/${boardId}`);
+};
+
 export default useBoardListQuery;

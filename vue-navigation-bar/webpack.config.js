@@ -89,6 +89,12 @@ module.exports = (_, argv) => ({
         './FailNaviBarPage': './src/bootstrap.js',
       },
       shared: require("./package.json").dependencies,
+      shared: {
+        vuetify: {
+          singleton: true,
+          requiredVersion: "^3.3.5",
+        },
+      },
     }),
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, './public/index.html'),

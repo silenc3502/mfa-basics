@@ -7,7 +7,7 @@ module.exports = (_, argv) => ({
   mode: 'development',
   entry: './src/index',
   output: {
-    publicPath: "auto",
+    publicPath: "http://localhost:3009/",
   },
   resolve: {
     extensions: [".tsx", ".ts", ".jsx", ".js", ".json"],
@@ -54,6 +54,10 @@ module.exports = (_, argv) => ({
       exposes: {
         './ReactTypeScriptBoard': './src/bootstrap.tsx',
         './ReactTypeScriptBoardApp': './src/ReactTypeScriptBoardApp.tsx',
+        './BoardListPage': './src/domain/board/page/BoardListPage.tsx',
+        './BoardReadPage': './src/domain/board/page/BoardReadPage.tsx',
+        './BoardRegisterPage': './src/domain/board/page/BoardRegisterPage.tsx',
+        './BoardModifyPage': './src/domain/board/page/BoardModifyPage.tsx',
       },
       shared: {
         ...deps,

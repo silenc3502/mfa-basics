@@ -40,12 +40,12 @@ const BoardModifyPage: React.FC = () => {
 
       queryClient.invalidateQueries(['board', boardId]);
 
-      navigate(`/read/${boardId}`);
+      navigate(`/react-mui-board-app/read/${boardId}`);
     }
   };
 
   const handleCancelClick = () => {
-    navigate(`/read/${boardId}`);
+    navigate(`/react-mui-board-app/read/${boardId}`);
   };
 
   if (isLoading) {

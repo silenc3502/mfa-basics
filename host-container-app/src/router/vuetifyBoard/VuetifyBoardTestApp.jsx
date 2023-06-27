@@ -1,11 +1,22 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 
 // import { vuetifyTailwindBoardMount } from 'vuetifyTailwindBoardApp/vuetifyBootstrap'
 
 const VuetifyBoardTestApp = ({ vuetifyTailwindBoardRef, naviHeight }) => {
+    const [isLoaded, setIsLoaded] = useState(false);
+
     // useEffect(() => {
     //     vuetifyTailwindBoardMount(vuetifyTailwindBoardRef.current);
-    // }, []);
+    // }, [vuetifyTailwindBoardRef]);
+
+    useEffect(() => {
+        const loadRemoteComponent = async () => {
+            const { vuetifyTailwindBoardMount } = await import('vuetifyTailwindBoardApp/vuetifyBootstrap');
+            vuetifyTailwindBoardMount(vuetifyTailwindBoardRef.current);
+        };
+
+        loadRemoteComponent();
+    }, [vuetifyTailwindBoardRef]);
 
     useEffect(() => {
         const contentWrapper = document.getElementById('content-wrapper');
@@ -18,7 +29,7 @@ const VuetifyBoardTestApp = ({ vuetifyTailwindBoardRef, naviHeight }) => {
   return (
     <div>
         <div id="content-wrapper">
-            Vuetify 끼리 충돌남
+            <div ref={vuetifyTailwindBoardRef}/>
         </div>
     </div>
   )

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Box, Container, TextField, Button } from '@mui/material';
-import { fetchBoard, useBoard } from '../api/BoardApi';
+import { deleteBoard, fetchBoard, useBoard } from '../api/BoardApi';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useQuery, useQueryClient } from 'react-query';
 
@@ -26,12 +26,18 @@ const BoardReadPage: React.FC = () => {
     }, [boardId]);
 
     const handleEditClick = () => {
-        navigate(`/modify/${boardId}`);
+        navigate(`/react-mui-board-app/modify/${boardId}`);
     };
 
     const handleCancelClick = () => {
         queryClient.invalidateQueries('boardList'); // 'boardList' 쿼리 무효화
-        navigate('/');
+        navigate('/react-mui-board-app');
+    };
+
+    const handleDeleteClick = async () => {
+        await deleteBoard(boardId || '');
+        queryClient.invalidateQueries('boardList');
+        navigate('/react-mui-board-app');
     };
 
     if (isLoading) {
@@ -67,7 +73,7 @@ const BoardReadPage: React.FC = () => {
                     sx={{ borderRadius: '4px' }}
                 />
                 <Button variant="outlined" onClick={handleEditClick}>Edit</Button>
-                <Button variant="outlined" /* onClick={handleDeleteClick} */>Delete</Button>
+                <Button variant="outlined" onClick={handleDeleteClick}>Delete</Button>
                 <Button variant="outlined" onClick={handleCancelClick}>Cancel</Button>
             </Box>
         </Container>
