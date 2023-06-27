@@ -86,7 +86,7 @@ module.exports = (_, argv) => ({
       name: 'vueNavigationPageModule',
       filename: 'remoteEntry.js',
       exposes: {
-        './NavigationBarPage': './src/bootstrap.js',
+        './FailNaviBarPage': './src/bootstrap.js',
       },
       shared: require("./package.json").dependencies,
     }),

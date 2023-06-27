@@ -8,20 +8,34 @@ import { loadFonts } from './plugins/webfontloader'
 
 import * as components from 'vuetify/components';
 import * as directives from 'vuetify/directives';
+import * as labsComponents from 'vuetify/labs/components'
 import { createVuetify } from "vuetify";
 
 const realNaviBarMount = (el: string | Element) => {
 
-    loadFonts()
+    loadFonts().then(() => { // Promise가 처리될 때까지 기다립니다.
+        const vuetify = createVuetify({
+            components: {
+                ...components,
+                ...labsComponents,
+            },
+            directives: {
+                ...directives,
+            },
+        });
 
-    const vuetify = createVuetify({
-        components,
-        directives,
+        const app = createApp(App).use(vuetify);
+        app.mount(el);
     });
 
-    createApp(App)
-        .use(vuetify)
-        .mount(el)
+    // const vuetify = createVuetify({
+    //     components,
+    //     directives,
+    // });
+
+    // createApp(App)
+    //     .use(vuetify)
+    //     .mount(el)
 }
 
 const devRoot = document.querySelector('#real-navi-bar');

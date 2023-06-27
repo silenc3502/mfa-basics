@@ -1,5 +1,4 @@
 import { createApp } from 'vue';
-import NavigationBarPage from './page/NavigationBarPage.vue';
 
 import '@mdi/font/css/materialdesignicons.css'
 import {loadFonts} from "./plugins/webfontloader";

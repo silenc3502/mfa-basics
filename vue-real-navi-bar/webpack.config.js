@@ -17,7 +17,7 @@ module.exports = (_, argv) => ({
   target: 'web',
   entry: path.resolve(__dirname, './src/index'),
   output: {
-    publicPath: 'auto',
+    publicPath: 'http://localhost:3005/',
   },
 
   resolve: {

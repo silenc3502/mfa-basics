@@ -1,9 +1,7 @@
 <template>
-  <v-container>
-    <v-app>
-      <router-view/>
-    </v-app>
-  </v-container>
+  <v-app class="board-app">
+    <router-view/>
+  </v-app>
 </template>
 
 <script lang="ts">

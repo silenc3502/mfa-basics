@@ -1,12 +1,11 @@
 <template>
-  <div style="height: 64px;">
-    <v-app>
-      <NavigationBarPage/>
-    </v-app>
-  </div>
+
+    <NavigationBarPage/>
+  
 </template>
 
 <script lang="ts">
+import 'vuetify/dist/vuetify.min.css'
 import { defineComponent } from 'vue'
 import NavigationBarPage from "./page/NavigationBarPage.vue";
 
