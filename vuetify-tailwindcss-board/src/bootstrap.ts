@@ -13,6 +13,7 @@ import { createVuetify, VuetifyOptions } from "vuetify";
 
 import boardModule from './store/index'
 import router from './router'
+import VuetifyBoardRegister from "./page/VuetifyBoardRegister.vue";
 
 const vuetifyTailwindBoardMount = (el: string | Element) => {
 
@@ -28,6 +29,7 @@ const vuetifyTailwindBoardMount = (el: string | Element) => {
         });
 
         const app = createApp(App).use(vuetify).use(boardModule).use(router);
+        // app.component('VuetifyBoardRegister', VuetifyBoardRegister)
         app.mount(el);
     });
 };

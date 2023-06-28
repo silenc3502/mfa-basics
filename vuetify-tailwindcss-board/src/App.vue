@@ -10,7 +10,6 @@ import VuetifyBoardList from './page/VuetifyBoardList.vue';
 
 import '@mdi/font/css/materialdesignicons.css'
 import 'vuetify/dist/vuetify.min.css'
-
 export default defineComponent({
   name: 'App',
   components: {

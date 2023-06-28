@@ -19,6 +19,9 @@ module.exports = (_, argv) => ({
   },
   resolve: {
     extensions: [".tsx", ".ts", ".vue", ".jsx", ".js", ".json"],
+    alias: {
+      'vue$': 'vue/dist/vue.esm-bundler.js'
+    }
   },
   module: {
     rules: [
@@ -78,7 +81,11 @@ module.exports = (_, argv) => ({
       filename: "remoteEntry.js",
       exposes: {
         './vuetifyBootstrap': './src/bootstrap',
-        "./boardModuleStore": "./src/store/board/boardModule"
+        "./boardModuleStore": "./src/store/board/boardModule",
+        "./boardListBootstrap": "./src/boardBootstrapper/boardListBootstrap",
+        "./boardRegisterBootstrap": "./src/boardBootstrapper/boardRegisterBootstrap",
+        "./boardReadBootstrap": "./src/boardBootstrapper/boardReadBootstrap",
+        "./VuetifyBoardModify": "./src/page/VuetifyBoardModify",
       },
       shared: require("./package.json").dependencies,
       shared: {

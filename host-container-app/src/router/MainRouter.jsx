@@ -12,6 +12,9 @@ import VuetifyBoardTestApp from './vuetifyBoard/VuetifyBoardTestApp';
 import ReactCounterTestApp from "./reactModule/ReactCounterTestApp";
 
 import ReactMuiBoardTestApp from "./reactMuiBoard/ReactMuiBoardTestApp";
+import VuetifyBoardListRouter from "./vuetifyBoard/VuetifyBoardListRouter";
+import VuetifyBoardRegisterRouter from "./vuetifyBoard/VuetifyBoardRegisterRouter";
+import VuetifyBoardReadRouter from "./vuetifyBoard/VuetifyBoardReadRouter";
 
 const MainRouters = () => {
     const vueRef = useRef(null)
@@ -51,6 +54,28 @@ const MainRouters = () => {
         }
     }, []);
 
+    const vuetifyBoardRegisterRef = useRef(null)
+
+    useEffect(() => {
+        const loadRemoteComponent = async () => {
+            const { boardRegisterBootstrapMount } = await import('vuetifyTailwindBoardApp/boardRegisterBootstrap')
+            boardRegisterBootstrapMount(vuetifyBoardRegisterRef.current)
+        }
+
+        loadRemoteComponent()
+    }, [vuetifyBoardRegisterRef])
+
+    const vuetifyBoardListRef = useRef(null)
+
+    useEffect(() => {
+        const loadRemoteComponent = async () => {
+            const { boardListBootstrapMount } = await import('vuetifyTailwindBoardApp/boardListBootstrap')
+            boardListBootstrapMount(vuetifyBoardListRef.current)
+        }
+
+        loadRemoteComponent()
+    }, [vuetifyBoardListRef])
+
     return (
         <div>
             {vuetifyRealNaviRef.current ? (
@@ -84,6 +109,19 @@ const MainRouters = () => {
                         />
                     </Routes>
                     <ReactMuiBoardTestApp naviHeight={naviHeight}/>
+                    {/*<VuetifyBoardTestApp naviHeight={naviHeight}/>*/}
+                    <Routes>
+                        {/*<Route*/}
+                        {/*    path="/vuetify-board-app"*/}
+                        {/*    element={<VuetifyBoardListRouter/>}*/}
+                        {/*/>*/}
+                        <Route
+                            exact path="/vuetify-board-app/register"
+                            element={<VuetifyBoardRegisterRouter/>} />
+                        <Route
+                            exact path="/vuetify-board-app/read/:boardId"
+                            element={<VuetifyBoardReadRouter/>} />
+                    </Routes>
                 </BrowserRouter>
             </Suspense>
             ) : null}
