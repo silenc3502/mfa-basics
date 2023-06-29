@@ -1,22 +1,20 @@
 import { createApp } from "vue";
 
-import "./index.scss";
+import "../index.scss";
 
-import App from "./App.vue";
+import App from "../App.vue";
 
-import { loadFonts } from "./plugins/webfontloader";
+import { loadFonts } from "../plugins/webfontloader";
 
 import * as components from 'vuetify/components'
 import * as directives from 'vuetify/directives';
 import * as labsComponents from 'vuetify/labs/components'
-import { createVuetify, VuetifyOptions } from "vuetify";
+import { createVuetify } from "vuetify";
 
-import boardModule from './store/index'
-import router from './router'
-//import VuetifyBoardRegister from "./page/VuetifyBoardRegister.vue";
+import boardModule from '../store/index'
+import router from '../router'
 
-const vuetifyTailwindBoardMount = (el: string | Element) => {
-
+const readBootstrapMount = (el: string | Element, boardId: string) => {
     loadFonts().then(() => { // Promise가 처리될 때까지 기다립니다.
         const vuetify = createVuetify({
             components: {
@@ -29,12 +27,10 @@ const vuetifyTailwindBoardMount = (el: string | Element) => {
         });
 
         const app = createApp(App).use(vuetify).use(boardModule).use(router);
-        app.mount(el);
+        router.push({ name: 'VuetifyBoardRead', params: { boardId } }).then(() => {
+            app.mount(el);
+        });
     });
 };
 
-const root = document.querySelector('#vuetify-tailwindcss-board')
-
-if (root) { vuetifyTailwindBoardMount(root) }
-
-export { vuetifyTailwindBoardMount }
+export { readBootstrapMount }

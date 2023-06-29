@@ -9,8 +9,10 @@ const VuetifyBoardReadRouter = () => {
 
     useEffect(() => {
         const loadRemoteComponent = async () => {
-            const { boardReadBootstrapMount } = await import('vuetifyTailwindBoardApp/boardReadBootstrap')
-            boardReadBootstrapMount(vuetifyBoardReadRef.current, boardId)
+            //const { boardReadBootstrapMount } = await import('vuetifyTailwindBoardApp/boardReadBootstrap')
+            const { readBootstrapMount } = await import('vuetifyTailwindBoardApp/otherReadBootstrap')
+            
+            readBootstrapMount(vuetifyBoardReadRef.current, boardId)
         }
 
         loadRemoteComponent()

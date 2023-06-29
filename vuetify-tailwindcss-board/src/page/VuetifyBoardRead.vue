@@ -42,11 +42,14 @@
         </v-container>
       </v-card-text>
     </v-card>
+
+    <router-view/>
   </v-container>
 </template>
 
 <script lang="ts">
 import { mapActions, mapState } from 'vuex';
+import { async } from '../../../vue-real-navi-bar/src/plugins/webfontloader';
 
 const boardModule = 'boardModule'
 
@@ -70,8 +73,9 @@ export default {
       await this.$router.push({ name: 'VuetifyBoardList' })
     }
   },
-  created () {
-    this.requestBoardToSpring(this.boardId)
+  async created () {
+    await this.requestBoardToSpring(this.boardId)
+    console.log('Read created')
   }
 }
 </script>

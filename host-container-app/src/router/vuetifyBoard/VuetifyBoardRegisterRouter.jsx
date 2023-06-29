@@ -20,11 +20,9 @@ const VuetifyBoardRegisterRouter = () => {
 
 
     return (
-        <div>
-            <div id="content-wrapper">
+
                 <div ref={vuetifyBoardRegisterRef}/>
-            </div>
-        </div>
+
     )
 }
 

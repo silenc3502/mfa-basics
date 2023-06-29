@@ -1,4 +1,4 @@
-import { createApp } from 'vue';
+import { createApp, defineComponent } from 'vue';
 import router from '../router';
 import VuetifyBoardList from '../page/VuetifyBoardList.vue';
 
@@ -29,7 +29,15 @@ const boardListBootstrapMount = (el: string | Element) => {
             },
         });
 
-        const boardListBootstrap = createApp(VuetifyBoardList).use(vuetify).use(boardModule).use(router);
+        const boardListComponent = defineComponent({
+            components: {
+                VuetifyBoardList
+            },
+            template: '<VuetifyBoardList/>',
+        });
+
+        const boardListBootstrap = createApp(boardListComponent)
+        boardListBootstrap.use(vuetify).use(boardModule).use(router);
         boardListBootstrap.mount(el);
     });
 };

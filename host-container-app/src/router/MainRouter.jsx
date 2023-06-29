@@ -15,6 +15,7 @@ import ReactMuiBoardTestApp from "./reactMuiBoard/ReactMuiBoardTestApp";
 import VuetifyBoardListRouter from "./vuetifyBoard/VuetifyBoardListRouter";
 import VuetifyBoardRegisterRouter from "./vuetifyBoard/VuetifyBoardRegisterRouter";
 import VuetifyBoardReadRouter from "./vuetifyBoard/VuetifyBoardReadRouter";
+import VuetifyBoardModifyRouter from './vuetifyBoard/VuetifyBoardModifyRouter';
 
 const MainRouters = () => {
     const vueRef = useRef(null)
@@ -111,16 +112,19 @@ const MainRouters = () => {
                     <ReactMuiBoardTestApp naviHeight={naviHeight}/>
                     {/*<VuetifyBoardTestApp naviHeight={naviHeight}/>*/}
                     <Routes>
-                        {/*<Route*/}
-                        {/*    path="/vuetify-board-app"*/}
-                        {/*    element={<VuetifyBoardListRouter/>}*/}
-                        {/*/>*/}
+                        {/* <Route
+                            exact path="/vuetify-board-app"
+                            element={<VuetifyBoardListRouter/>}
+                        /> */}
                         <Route
                             exact path="/vuetify-board-app/register"
                             element={<VuetifyBoardRegisterRouter/>} />
                         <Route
                             exact path="/vuetify-board-app/read/:boardId"
                             element={<VuetifyBoardReadRouter/>} />
+                        <Route
+                            exact path="/vuetify-board-app/modify/:boardId"
+                            element={<VuetifyBoardModifyRouter/>} />
                     </Routes>
                 </BrowserRouter>
             </Suspense>

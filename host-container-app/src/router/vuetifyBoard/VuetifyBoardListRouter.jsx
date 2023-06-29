@@ -14,11 +14,8 @@ const VuetifyBoardListRouter = () => {
 
 
     return (
-        <div>
-            <div id="content-wrapper">
+
                 <div ref={vuetifyBoardListRef}/>
-            </div>
-        </div>
     )
 }
 
